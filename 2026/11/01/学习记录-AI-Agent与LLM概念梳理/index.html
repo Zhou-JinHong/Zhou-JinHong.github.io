@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>学习记录｜AI Agent 与 LLM 概念梳理 | Zhou-JinHong's Blog</title><meta name="author" content="Zhou-JinHong"><meta name="copyright" content="Zhou-JinHong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="整理一下 AI Agent 与 LLM 这两个方向的基本概念，作为后续深入学习的地基。 LLM（Large Language Model）大语言模型，基于海量文本训练、具备强大语言理解与生成能力的模型。核心特点：  通过大规模预训练习得通用语言能力 支持上下文学习与多任务泛化 是当前 AI Agent 的能力底座  AI Agent具备「感知—规划—行动」闭环、能够自主完成任务的智能体。相比单次问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习记录｜AI Agent 与 LLM 概念梳理">
+<meta property="og:url" content="https://zhou-jinhong.github.io/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/index.html">
+<meta property="og:site_name" content="Zhou-JinHong&#39;s Blog">
+<meta property="og:description" content="整理一下 AI Agent 与 LLM 这两个方向的基本概念，作为后续深入学习的地基。 LLM（Large Language Model）大语言模型，基于海量文本训练、具备强大语言理解与生成能力的模型。核心特点：  通过大规模预训练习得通用语言能力 支持上下文学习与多任务泛化 是当前 AI Agent 的能力底座  AI Agent具备「感知—规划—行动」闭环、能够自主完成任务的智能体。相比单次问">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhou-jinhong.github.io/img/avatar.png">
+<meta property="article:published_time" content="2026-11-01T03:10:00.000Z">
+<meta property="article:modified_time" content="2026-11-01T03:59:23.706Z">
+<meta property="article:author" content="Zhou-JinHong">
+<meta property="article:tag" content="AI Agent">
+<meta property="article:tag" content="学习记录">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhou-jinhong.github.io/img/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "学习记录｜AI Agent 与 LLM 概念梳理",
+  "url": "https://zhou-jinhong.github.io/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/",
+  "image": "https://zhou-jinhong.github.io/img/avatar.png",
+  "datePublished": "2026-11-01T03:10:00.000Z",
+  "dateModified": "2026-11-01T03:59:23.706Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Zhou-JinHong",
+      "url": "https://Zhou-JinHong.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zhou-jinhong.github.io/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '学习记录｜AI Agent 与 LLM 概念梳理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/deepspace.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-color: #0d1117;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-route"></i><span> 学习记录</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-cubes"></i><span> 项目</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-astronaut"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Zhou-JinHong's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">学习记录｜AI Agent 与 LLM 概念梳理</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"><i class="fa-fw fas fa-route"></i><span> 学习记录</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-cubes"></i><span> 项目</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user-astronaut"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">学习记录｜AI Agent 与 LLM 概念梳理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-11-01T03:10:00.000Z" title="发表于 2026-11-01 11:10:00">2026-11-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-11-01T03:59:23.706Z" title="更新于 2026-11-01 11:59:23">2026-11-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>整理一下 AI Agent 与 LLM 这两个方向的基本概念，作为后续深入学习的地基。</p>
+<h2 id="LLM（Large-Language-Model）"><a href="#LLM（Large-Language-Model）" class="headerlink" title="LLM（Large Language Model）"></a>LLM（Large Language Model）</h2><p>大语言模型，基于海量文本训练、具备强大语言理解与生成能力的模型。核心特点：</p>
+<ul>
+<li>通过大规模预训练习得通用语言能力</li>
+<li>支持上下文学习与多任务泛化</li>
+<li>是当前 AI Agent 的能力底座</li>
+</ul>
+<h2 id="AI-Agent"><a href="#AI-Agent" class="headerlink" title="AI Agent"></a>AI Agent</h2><p>具备「感知—规划—行动」闭环、能够自主完成任务的智能体。相比单次问答的 LLM，Agent 更强调：</p>
+<ul>
+<li>工具调用（Tool Use）</li>
+<li>记忆与上下文管理</li>
+<li>多步规划与反思</li>
+</ul>
+<h2 id="LLM-与-Agent-的关系"><a href="#LLM-与-Agent-的关系" class="headerlink" title="LLM 与 Agent 的关系"></a>LLM 与 Agent 的关系</h2><p>LLM 提供「大脑」，Agent 在此之上补充工具、记忆与规划，让模型从「回答问题」走向「完成任务」。</p>
+<h2 id="后续计划"><a href="#后续计划" class="headerlink" title="后续计划"></a>后续计划</h2><p>围绕这两个方向，持续记录论文阅读、工程实践与思考。</p>
+<blockquote>
+<p>先把概念理清，再谈实践。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://Zhou-JinHong.github.io">Zhou-JinHong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://zhou-jinhong.github.io/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/">https://zhou-jinhong.github.io/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://Zhou-JinHong.github.io" target="_blank">Zhou-JinHong's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AI-Agent/">AI Agent</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a><a class="post-meta__tags" href="/tags/LLM/">LLM</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E5%A4%8D%E7%9B%98/" title="学习记录｜搭建 Hexo 博客全流程踩坑复盘"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">学习记录｜搭建 Hexo 博客全流程踩坑复盘</div></div><div class="info-2"><div class="info-item-1">记录这次搭建个人博客的完整流程与踩过的坑，作为开发日志的第一篇。 目标用 Hexo + GitHub Pages 搭建一个属于自己的技术博客，主题选择科技感的 Butterfly。 关键步骤 初始化 Hexo 项目 安装 Butterfly 主题与依赖 配置站点信息与主题外观 生成静态文件并部署到 GitHub Pages  踩坑记录 沙箱部署拦截：hexo deploy 在受限环境会被安全策略拦截，改用手动 git push 方式绕过。 SSH 环境变量：root 用户下 SSH 会读错 home 目录，需显式指定 HOME 和 GIT_SSH_COMMAND。 端口占用：预览服务器多次遇到端口冲突，换用高位端口解决。  小结环境类问题往往比功能开发更耗时，把可复用的部署流程沉淀下来，能省下大量重复劳动。 </div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/10/30/hello-world/" title="你好，世界——从这里开始记录 Agent 与 LLM 的探索"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-10-30</div><div class="info-item-2">你好，世界——从这里开始记录 Agent 与 LLM 的探索</div></div><div class="info-2"><div class="info-item-1">这是博客的第一篇文章，用来测试 Hexo 博客是否搭建成功，也作为我记录 AI Agent 与 LLM（Large Language Model） 探索旅程的起点。 为什么写博客记录学习、沉淀思考、公开分享。在 Agent 与 LLM 这条快速演进的赛道上，持续输出是理解与成长的重要方式。 接下来会写什么 AI Agent 的工程实践与踩坑记录 LLM（大语言模型）相关论文与思考 开发工具链与效率方法  感谢你的到访，欢迎持续关注。 </div></div></div></a><a class="pagination-related" href="/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E5%A4%8D%E7%9B%98/" title="学习记录｜搭建 Hexo 博客全流程踩坑复盘"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-11-01</div><div class="info-item-2">学习记录｜搭建 Hexo 博客全流程踩坑复盘</div></div><div class="info-2"><div class="info-item-1">记录这次搭建个人博客的完整流程与踩过的坑，作为开发日志的第一篇。 目标用 Hexo + GitHub Pages 搭建一个属于自己的技术博客，主题选择科技感的 Butterfly。 关键步骤 初始化 Hexo 项目 安装 Butterfly 主题与依赖 配置站点信息与主题外观 生成静态文件并部署到 GitHub Pages  踩坑记录 沙箱部署拦截：hexo deploy 在受限环境会被安全策略拦截，改用手动 git push 方式绕过。 SSH 环境变量：root 用户下 SSH 会读错 home 目录，需显式指定 HOME 和 GIT_SSH_COMMAND。 端口占用：预览服务器多次遇到端口冲突，换用高位端口解决。  小结环境类问题往往比功能开发更耗时，把可复用的部署流程沉淀下来，能省下大量重复劳动。 </div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Zhou-JinHong</div><div class="author-info-description">关于 AI Agent、LLM（Large Language Model）与开发的思考与实践</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Zhou-JinHong" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss" style="color: #ffa500;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM%EF%BC%88Large-Language-Model%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">LLM（Large Language Model）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AI-Agent"><span class="toc-number">2.</span> <span class="toc-text">AI Agent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LLM-%E4%B8%8E-Agent-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.</span> <span class="toc-text">LLM 与 Agent 的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E8%AE%A1%E5%88%92"><span class="toc-number">4.</span> <span class="toc-text">后续计划</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-AI-Agent%E4%B8%8ELLM%E6%A6%82%E5%BF%B5%E6%A2%B3%E7%90%86/" title="学习记录｜AI Agent 与 LLM 概念梳理">学习记录｜AI Agent 与 LLM 概念梳理</a><time datetime="2026-11-01T03:10:00.000Z" title="发表于 2026-11-01 11:10:00">2026-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/11/01/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%B8%A9%E5%9D%91%E5%A4%8D%E7%9B%98/" title="学习记录｜搭建 Hexo 博客全流程踩坑复盘">学习记录｜搭建 Hexo 博客全流程踩坑复盘</a><time datetime="2026-11-01T03:00:00.000Z" title="发表于 2026-11-01 11:00:00">2026-11-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/10/30/hello-world/" title="你好，世界——从这里开始记录 Agent 与 LLM 的探索">你好，世界——从这里开始记录 Agent 与 LLM 的探索</a><time datetime="2026-10-30T08:30:00.000Z" title="发表于 2026-10-30 16:30:00">2026-10-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Zhou-JinHong</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script id="canvas_nest" defer="defer" color="212,175,55" opacity="0.6" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
